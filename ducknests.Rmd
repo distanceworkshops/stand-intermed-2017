@@ -1,0 +1,251 @@
+---
+title: "Detection function fitting with ducknest dataset"
+output: learnr::tutorial
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(Distance)
+knitr::opts_chunk$set(echo = FALSE)
+ducknests <- read.csv(file="http://distancesampling.org/R/vignettes/ducknests.csv")
+```
+
+An early application of line transect sampling was in the estimation of duck nest density on the Monte Vista National Wildlife Refuge.  Below you will perform an analysis of such data.
+
+![Photo Credit: http://www.sangres.com/colorado/wildlife-refuges/monte-vistanwr.htm](images/monte-vista-nwr02.jpg)
+
+
+## Query the dataset
+
+Data is a comma-delimited file (csv) residing on webserver; hence use full URL to read the file into an object named `ducknests`.  This brings in the data.
+
+```{r, eval=FALSE, echo=TRUE}
+ducknests <- read.csv(file="http://distancesampling.org/R/vignettes/ducknests.csv")
+```
+
+### Supply code below to answer the questions:
+
+```{r readducks, exercise=TRUE, exercise.lines=5, exercise.cap="Query ducknests"}
+
+```
+
+
+```{r quiz1}
+quiz(
+  question("How many detections in this dataset?",
+    answer("5"),
+    answer("147"),
+    answer("534", correct = TRUE),
+    answer("625")
+  ),
+  question("What command most easily determined the number of observations?",
+    answer("dim(ducknests)[1]", correct = TRUE),
+    answer("length(ducknests)"),
+    answer("nobs(ducknests)"),
+    answer("nrow(ducknests)")
+  )
+)
+```
+
+## Exploratory data analysis
+
+Prior to fitting detection functions, some simple queries of the data are useful.  
+
+### How many transects were in this survey?
+```{r numtran-ex, exercise=TRUE, exercise.lines = 5, exercise.cap="Number of transects"}
+
+```
+
+```{r numtran}
+  question("How many transects were in this survey?",
+    answer("534", message = "That's the number of detections."),
+    answer("10"),
+    answer("20", correct = TRUE),
+    answer("27")
+  )
+```
+
+```{r numtran-ex-hint-1 }
+ducknests$Sample.Label
+```
+
+```{r numtran-ex-hint-2 }
+unique(ducknests$Sample.Label)
+```
+
+```{r numtran-ex-hint-3 }
+length(unique(ducknests$Sample.Label))
+```
+
+```{r numtran-ex-solution, }
+length(unique(ducknests$Sample.Label))
+```
+
+### Which transect had the fewest number of detections?
+```{r dettran-ex, exercise=TRUE, exercise.lines = 5, exercise.cap="Detections per transect"}
+
+```
+
+```{r dettran}
+  question("Which transect had the fewest number of detections?",
+    answer("534"),
+    answer("10", correct = TRUE),
+    answer("17", message = "That's the fewest number of detections; which transect?"),
+    answer("27")
+  )
+```
+
+```{r dettran-ex-hint-1 }
+?table
+```
+
+```{r dettran-ex-hint-2 }
+table(ducknests$Sample.Label)
+```
+
+```{r dettran-ex-solution, }
+table(ducknests$Sample.Label)
+```
+
+### How uniform are the number of detections across transects?
+```{r uniftrans-ex, exercise=TRUE, exercise.lines = 5, exercise.cap="Evenness of detections"}
+
+```
+<div id="uniftran-ex-hint">
+**Hint:** Express variability as variance of detections per transect.
+</div>
+
+```{r uniftran-q}
+  question("How variable are the detections between transects?",
+    answer("21.1", correct = TRUE),
+    answer("104.7"),
+    answer("248.0", message="The analysis would be clumsy if this was true")
+  )
+```
+
+
+```{r uniftran-q-hint-1 }
+table(ducknests$Sample.Label)
+```
+
+```{r uniftran-q-hint-2 }
+var(table(ducknests$Sample.Label))
+```
+
+```{r uniftran-q-solution, }
+var(table(ducknests$Sample.Label))
+```
+
+
+## Fit the simplest detection function
+
+The function `ds()` in the package `Distance` performs the task of fitting detection functions to distance sampling data.  Note the use of the `convert.units` argument.  For these data, the transect length was recorded in kilometers and the perpendicular distances were recorded in meters.  The `convert.units` value of 0.001 converts meters to kilometers such that density of duck nests will be reported in $nests \cdot km^{-2}$
+
+```{r hndet-ex, exercise=TRUE, exercise.lines = 5,  exercise.cap="Fit halfnormal"}
+hn.no.adj <- ds(ducknests, adjustment = NULL, convert.units = 0.001)
+  
+
+```
+<div id="hndet-ex-hint">
+**Hint:** Default arguments for `ds()` will produce the correct key function, but will include adjustments.
+</div>
+
+### Contrast two detection functions
+
+Having fitted the half-normal without adjustment terms, alter this code to do the same with the hazard rate key function.
+
+```{r hrdet-ex, exercise=TRUE, exercise.lines = 5,  exercise.cap="Fit hazard rate"}
+hr.no.adj <- ds(ducknests,  adjustment = NULL, convert.units = 0.001)
+  
+
+```
+
+Having fitted two detection functions to the ducknest data, summarise the two models with the function `summarize_ds_models()` where the first arguments are the names of the objects produced from calls to `ds()`: in this case `hn.no.adj` and `hr.no.adj`.
+
+```{r compare, exercise=TRUE, exercise.lines = 5, exercise.cap="Compare fitted models", exercise.setup="hrdet-ex"}
+hn.no.adj <- ds(ducknests, key="hn", adjustment = NULL, convert.units = 0.001)
+hr.no.adj <- ds(ducknests, key="hr", adjustment = NULL, convert.units = 0.001)
+summarize_ds_models(  output="plain")
+  
+
+```
+
+```{r quiz2}
+quiz(
+  question("Which of the two models is preferred according to AIC?",
+    answer("Half normal", correct = TRUE),
+    answer("Hazard rate")
+  ),
+  question("What is the magnitude of the $\\DeltaAIC$ difference?",
+    answer("12.4"),
+    answer("7.5"),
+    answer("1.7", correct=TRUE),
+    answer("0.6")
+  )
+)
+```
+
+## Absolute measure of fit
+
+The previous exercise provided goodness of fit $p$-values for both models.  Use the `plot()` function to depict the fit of the preferred model to the observed distribution of perpendicular distances.  Also assess the fit by generating a QQ-plot and test statistics using `gof_ds()`.
+```{r, absfit, exercise=TRUE, exercise.lines=5, exercise.cap="Absolute model fit", exercise.setup="hndet-ex"}
+hn.no.adj <- ds(data=ducknests, key="hn", adj=NULL)
+plot(hn.no.adj, showpoints=FALSE, lwd=2)
+
+```
+
+```{r quiz3}
+quiz(
+  question("What hypothesis is being tested by the goodness of fit test?",
+    answer("The data does not fit the model"),
+    answer("The model fits the data", correct=TRUE)
+  ),
+  question("From the p-values presented, is the null hypothesis supported or refuted?",
+    answer("supported", correct=TRUE),
+    answer("refuted")
+  )
+)  
+```
+
+## Duck nest density
+
+Having completed the detection function fitting and model selection, inference can be made regarding the estimated density of duck nests from this survey.  The `summary()` function takes as its argument the fitted model object.  
+
+```{r estimate-hn, exercise=TRUE, exercise.lines = 5, exercise.cap="Compare fitted models", exercise.setup="hndet-ex"}
+hn.no.adj <- ds(data=ducknests, key="hn", adj=NULL)
+  
+
+```
+
+This dataset did not provide a study area size, hence an abundance estimate for the entire study area cannot be produced, but a density estimate (in units of $nests \cdot km^{-2}$) is provided by the `summary()` function.
+
+
+### Density estimate from the hazard rate detection function
+
+Recall the $\Delta$AIC difference between the two models was small.  Perhaps you might angst over which model is correct.  Use `summary()` to show the density estimate of nests under this alternative model.
+
+```{r estimate-hr, exercise=TRUE, exercise.lines = 5, exercise.cap="Compare fitted models", exercise.setup="hrdet-ex"}
+hr.no.adj <- ds(data=ducknests, key="hr", adj=NULL)
+  
+
+```
+
+Contrast the two estimates by taking the ratio of the hazard rate estimate to the halfnormal estimate.  The summary objects store the density point estimates deep down inside the object, using this code:
+
+```{r echo=TRUE, eval=FALSE}
+summary(hn.no.adj)$dht$individuals$D$Estimate
+```
+
+From this starting point, compute the ratio of the two estimates.
+
+```{r hnhrdiff-q}
+  question("What is the magnitude of the relative difference in the two density estimates?",
+    answer("\\>10%"),
+    answer("5-10%"),
+    answer("2.5-5%"), 
+    answer("<2.5%", correct = TRUE, message = "This is less than half the CV of the point estimate.")
+  )
+```
+
+*Moral of this comparison:*  high quality data such as this presents few problems in analysis.  In fact, the estimate of duck nest density is effectively insensitive to the model used.  Care taken during data collection prevents challenges during analysis.

@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Intermediate distance sampling workshop - St Andrews 2017</title>
+  <meta name="description" content="Intermediate distance sampling workshop - St Andrews 2017">
+  <meta name="generator" content="bookdown 0.4 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Intermediate distance sampling workshop - St Andrews 2017" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Intermediate distance sampling workshop - St Andrews 2017" />
+  
+  
+  
+
+<meta name="author" content="Laura Marshall, David L. Miller, Eric Rexstad and Len Thomas">
+
+
+<meta name="date" content="2017-07-29">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="create-and-analyse-a-simulated-dataset.html">
+<link rel="next" href="creating-distance-sampling-simulations-using-dssim.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="details.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="1" data-path="a-hands-on-introduction-to-r-tutorial.html"><a href="a-hands-on-introduction-to-r-tutorial.html"><i class="fa fa-check"></i><b>1</b> A hands on introduction to R tutorial</a><ul>
+<li class="chapter" data-level="1.1" data-path="a-hands-on-introduction-to-r-tutorial.html"><a href="a-hands-on-introduction-to-r-tutorial.html#introduction"><i class="fa fa-check"></i><b>1.1</b> Introduction</a></li>
+<li class="chapter" data-level="1.2" data-path="a-hands-on-introduction-to-r-tutorial.html"><a href="a-hands-on-introduction-to-r-tutorial.html#introduction-to-rstudio"><i class="fa fa-check"></i><b>1.2</b> Introduction to RStudio</a></li>
+<li class="chapter" data-level="1.3" data-path="a-hands-on-introduction-to-r-tutorial.html"><a href="a-hands-on-introduction-to-r-tutorial.html#a-first-session-in-rstudio"><i class="fa fa-check"></i><b>1.3</b> A first session in RStudio</a></li>
+<li class="chapter" data-level="1.4" data-path="a-hands-on-introduction-to-r-tutorial.html"><a href="a-hands-on-introduction-to-r-tutorial.html#Types-classes"><i class="fa fa-check"></i><b>1.4</b> Types and classes of objects</a></li>
+<li class="chapter" data-level="1.5" data-path="a-hands-on-introduction-to-r-tutorial.html"><a href="a-hands-on-introduction-to-r-tutorial.html#subsetting-data"><i class="fa fa-check"></i><b>1.5</b> Subsetting data</a></li>
+<li class="chapter" data-level="1.6" data-path="a-hands-on-introduction-to-r-tutorial.html"><a href="a-hands-on-introduction-to-r-tutorial.html#mathematical-functions-and-simple-data-calculations"><i class="fa fa-check"></i><b>1.6</b> Mathematical functions and simple data calculations</a></li>
+<li class="chapter" data-level="1.7" data-path="a-hands-on-introduction-to-r-tutorial.html"><a href="a-hands-on-introduction-to-r-tutorial.html#importing-and-exporting-data"><i class="fa fa-check"></i><b>1.7</b> Importing and exporting data</a></li>
+<li class="chapter" data-level="1.8" data-path="a-hands-on-introduction-to-r-tutorial.html"><a href="a-hands-on-introduction-to-r-tutorial.html#graphics"><i class="fa fa-check"></i><b>1.8</b> Graphics</a></li>
+<li class="chapter" data-level="1.9" data-path="a-hands-on-introduction-to-r-tutorial.html"><a href="a-hands-on-introduction-to-r-tutorial.html#extending-basic-capabilities-via-packages"><i class="fa fa-check"></i><b>1.9</b> Extending basic capabilities via packages</a></li>
+<li class="chapter" data-level="1.10" data-path="a-hands-on-introduction-to-r-tutorial.html"><a href="a-hands-on-introduction-to-r-tutorial.html#linear-regression"><i class="fa fa-check"></i><b>1.10</b> Linear regression</a></li>
+<li class="chapter" data-level="1.11" data-path="a-hands-on-introduction-to-r-tutorial.html"><a href="a-hands-on-introduction-to-r-tutorial.html#some-advanced-capabilities-of-r"><i class="fa fa-check"></i><b>1.11</b> Some advanced capabilities of R</a><ul>
+<li class="chapter" data-level="1.11.1" data-path="a-hands-on-introduction-to-r-tutorial.html"><a href="a-hands-on-introduction-to-r-tutorial.html#simulation-and-random-number-generation"><i class="fa fa-check"></i><b>1.11.1</b> Simulation and random number generation</a></li>
+<li class="chapter" data-level="1.11.2" data-path="a-hands-on-introduction-to-r-tutorial.html"><a href="a-hands-on-introduction-to-r-tutorial.html#writing-your-own-functions"><i class="fa fa-check"></i><b>1.11.2</b> Writing your own functions</a></li>
+</ul></li>
+<li class="chapter" data-level="1.12" data-path="a-hands-on-introduction-to-r-tutorial.html"><a href="a-hands-on-introduction-to-r-tutorial.html#wrap-up"><i class="fa fa-check"></i><b>1.12</b> Wrap up</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="create-and-analyse-a-simulated-dataset.html"><a href="create-and-analyse-a-simulated-dataset.html"><i class="fa fa-check"></i><b>2</b> Create and analyse a simulated dataset</a><ul>
+<li class="chapter" data-level="2.1" data-path="create-and-analyse-a-simulated-dataset.html"><a href="create-and-analyse-a-simulated-dataset.html#exercise-using-distance-for-windows"><i class="fa fa-check"></i><b>2.1</b> Exercise using Distance for Windows</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="create-and-analyse-a-simulated-dataset.html"><a href="create-and-analyse-a-simulated-dataset.html#simulate-a-dataset"><i class="fa fa-check"></i><b>2.1.1</b> Simulate a dataset</a></li>
+<li class="chapter" data-level="2.1.2" data-path="create-and-analyse-a-simulated-dataset.html"><a href="create-and-analyse-a-simulated-dataset.html#import-the-data-into-distance"><i class="fa fa-check"></i><b>2.1.2</b> Import the data into Distance</a></li>
+<li class="chapter" data-level="2.1.3" data-path="create-and-analyse-a-simulated-dataset.html"><a href="create-and-analyse-a-simulated-dataset.html#analyze-the-data-in-distance"><i class="fa fa-check"></i><b>2.1.3</b> Analyze the data in Distance</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="create-and-analyse-a-simulated-dataset.html"><a href="create-and-analyse-a-simulated-dataset.html#exercise-using-r"><i class="fa fa-check"></i><b>2.2</b> Exercise using R</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="create-and-analyse-a-simulated-dataset.html"><a href="create-and-analyse-a-simulated-dataset.html#simulate-a-dataset-1"><i class="fa fa-check"></i><b>2.2.1</b> Simulate a dataset</a></li>
+<li class="chapter" data-level="2.2.2" data-path="create-and-analyse-a-simulated-dataset.html"><a href="create-and-analyse-a-simulated-dataset.html#detection-function-modelling"><i class="fa fa-check"></i><b>2.2.2</b> Detection function modelling</a></li>
+<li class="chapter" data-level="2.2.3" data-path="create-and-analyse-a-simulated-dataset.html"><a href="create-and-analyse-a-simulated-dataset.html#abundance-estimation"><i class="fa fa-check"></i><b>2.2.3</b> Abundance estimation</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="problem-datasets.html"><a href="problem-datasets.html"><i class="fa fa-check"></i><b>3</b> Problem datasets</a><ul>
+<li class="chapter" data-level="3.1" data-path="problem-datasets.html"><a href="problem-datasets.html#ducknest"><i class="fa fa-check"></i><b>3.1</b> Ducknest</a></li>
+<li class="chapter" data-level="3.2" data-path="problem-datasets.html"><a href="problem-datasets.html#crabeater-seal"><i class="fa fa-check"></i><b>3.2</b> Crabeater seal</a></li>
+<li class="chapter" data-level="3.3" data-path="problem-datasets.html"><a href="problem-datasets.html#capercaillie"><i class="fa fa-check"></i><b>3.3</b> Capercaillie</a></li>
+<li class="chapter" data-level="3.4" data-path="problem-datasets.html"><a href="problem-datasets.html#amakihi"><i class="fa fa-check"></i><b>3.4</b> Amakihi</a></li>
+<li class="chapter" data-level="3.5" data-path="problem-datasets.html"><a href="problem-datasets.html#odd-spike-data-set"><i class="fa fa-check"></i><b>3.5</b> Odd spike data set</a></li>
+<li class="chapter" data-level="3.6" data-path="problem-datasets.html"><a href="problem-datasets.html#blue-monkey-data-set"><i class="fa fa-check"></i><b>3.6</b> Blue monkey data set</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="creating-distance-sampling-simulations-using-dssim.html"><a href="creating-distance-sampling-simulations-using-dssim.html"><i class="fa fa-check"></i><b>4</b> Creating distance sampling simulations using DSsim</a><ul>
+<li class="chapter" data-level="4.1" data-path="creating-distance-sampling-simulations-using-dssim.html"><a href="creating-distance-sampling-simulations-using-dssim.html#aim"><i class="fa fa-check"></i><b>4.1</b> Aim</a></li>
+<li class="chapter" data-level="4.2" data-path="creating-distance-sampling-simulations-using-dssim.html"><a href="creating-distance-sampling-simulations-using-dssim.html#create-a-region-object"><i class="fa fa-check"></i><b>4.2</b> Create a region object</a></li>
+<li class="chapter" data-level="4.3" data-path="creating-distance-sampling-simulations-using-dssim.html"><a href="creating-distance-sampling-simulations-using-dssim.html#create-a-density-object"><i class="fa fa-check"></i><b>4.3</b> Create a density object</a></li>
+<li class="chapter" data-level="4.4" data-path="creating-distance-sampling-simulations-using-dssim.html"><a href="creating-distance-sampling-simulations-using-dssim.html#creating-population-description-and-detectability-objects"><i class="fa fa-check"></i><b>4.4</b> Creating population description and detectability objects</a></li>
+<li class="chapter" data-level="4.5" data-path="creating-distance-sampling-simulations-using-dssim.html"><a href="creating-distance-sampling-simulations-using-dssim.html#creating-the-survey-design-object"><i class="fa fa-check"></i><b>4.5</b> Creating the survey design object</a></li>
+<li class="chapter" data-level="4.6" data-path="creating-distance-sampling-simulations-using-dssim.html"><a href="creating-distance-sampling-simulations-using-dssim.html#creating-the-analyses-object"><i class="fa fa-check"></i><b>4.6</b> Creating the analyses object</a></li>
+<li class="chapter" data-level="4.7" data-path="creating-distance-sampling-simulations-using-dssim.html"><a href="creating-distance-sampling-simulations-using-dssim.html#creating-the-simulation-object"><i class="fa fa-check"></i><b>4.7</b> Creating the simulation object</a></li>
+<li class="chapter" data-level="4.8" data-path="creating-distance-sampling-simulations-using-dssim.html"><a href="creating-distance-sampling-simulations-using-dssim.html#now-for-the-automated-designs-parallel-lines"><i class="fa fa-check"></i><b>4.8</b> Now for the automated designs: Parallel lines</a><ul>
+<li class="chapter" data-level="4.8.1" data-path="creating-distance-sampling-simulations-using-dssim.html"><a href="creating-distance-sampling-simulations-using-dssim.html#zigzag-survey-design"><i class="fa fa-check"></i><b>4.8.1</b> ZigZag survey design</a></li>
+</ul></li>
+<li class="chapter" data-level="4.9" data-path="creating-distance-sampling-simulations-using-dssim.html"><a href="creating-distance-sampling-simulations-using-dssim.html#results-from-999-repetitions"><i class="fa fa-check"></i><b>4.9</b> Results from 999 repetitions</a></li>
+<li class="chapter" data-level="4.10" data-path="creating-distance-sampling-simulations-using-dssim.html"><a href="creating-distance-sampling-simulations-using-dssim.html#running-distance-sampling-simulations-using-distance-7.1"><i class="fa fa-check"></i><b>4.10</b> Running distance sampling simulations using Distance 7.1</a></li>
+<li class="chapter" data-level="4.11" data-path="creating-distance-sampling-simulations-using-dssim.html"><a href="creating-distance-sampling-simulations-using-dssim.html#creating-simulations-in-distance"><i class="fa fa-check"></i><b>4.11</b> Creating simulations in Distance</a><ul>
+<li class="chapter" data-level="4.11.1" data-path="creating-distance-sampling-simulations-using-dssim.html"><a href="creating-distance-sampling-simulations-using-dssim.html#simulation-details"><i class="fa fa-check"></i><b>4.11.1</b> Simulation Details</a></li>
+<li class="chapter" data-level="4.11.2" data-path="creating-distance-sampling-simulations-using-dssim.html"><a href="creating-distance-sampling-simulations-using-dssim.html#simulation-properties"><i class="fa fa-check"></i><b>4.11.2</b> Simulation Properties</a></li>
+<li class="chapter" data-level="4.11.3" data-path="creating-distance-sampling-simulations-using-dssim.html"><a href="creating-distance-sampling-simulations-using-dssim.html#results"><i class="fa fa-check"></i><b>4.11.3</b> Results</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="preparing-survey-data-for-spatial-analysis.html"><a href="preparing-survey-data-for-spatial-analysis.html"><i class="fa fa-check"></i><b>5</b> Preparing survey data for spatial analysis</a><ul>
+<li class="chapter" data-level="5.1" data-path="preparing-survey-data-for-spatial-analysis.html"><a href="preparing-survey-data-for-spatial-analysis.html#aims"><i class="fa fa-check"></i><b>5.1</b> Aims</a></li>
+<li class="chapter" data-level="5.2" data-path="preparing-survey-data-for-spatial-analysis.html"><a href="preparing-survey-data-for-spatial-analysis.html#preamble"><i class="fa fa-check"></i><b>5.2</b> Preamble</a></li>
+<li class="chapter" data-level="5.3" data-path="preparing-survey-data-for-spatial-analysis.html"><a href="preparing-survey-data-for-spatial-analysis.html#load-and-arrange-data"><i class="fa fa-check"></i><b>5.3</b> Load and arrange data</a><ul>
+<li class="chapter" data-level="5.3.1" data-path="preparing-survey-data-for-spatial-analysis.html"><a href="preparing-survey-data-for-spatial-analysis.html#segment-data"><i class="fa fa-check"></i><b>5.3.1</b> Segment data</a></li>
+<li class="chapter" data-level="5.3.2" data-path="preparing-survey-data-for-spatial-analysis.html"><a href="preparing-survey-data-for-spatial-analysis.html#observation-data"><i class="fa fa-check"></i><b>5.3.2</b> Observation data</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="preparing-survey-data-for-spatial-analysis.html"><a href="preparing-survey-data-for-spatial-analysis.html#save-the-data"><i class="fa fa-check"></i><b>5.4</b> Save the data</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="detection-function-fitting.html"><a href="detection-function-fitting.html"><i class="fa fa-check"></i><b>6</b> Detection function fitting</a><ul>
+<li class="chapter" data-level="6.1" data-path="detection-function-fitting.html"><a href="detection-function-fitting.html#aims-1"><i class="fa fa-check"></i><b>6.1</b> Aims</a></li>
+<li class="chapter" data-level="6.2" data-path="detection-function-fitting.html"><a href="detection-function-fitting.html#preamble-1"><i class="fa fa-check"></i><b>6.2</b> Preamble</a></li>
+<li class="chapter" data-level="6.3" data-path="detection-function-fitting.html"><a href="detection-function-fitting.html#load-the-data"><i class="fa fa-check"></i><b>6.3</b> Load the data</a></li>
+<li class="chapter" data-level="6.4" data-path="detection-function-fitting.html"><a href="detection-function-fitting.html#exploratory-analysis"><i class="fa fa-check"></i><b>6.4</b> Exploratory analysis</a><ul>
+<li class="chapter" data-level="6.4.1" data-path="detection-function-fitting.html"><a href="detection-function-fitting.html#distances"><i class="fa fa-check"></i><b>6.4.1</b> Distances</a></li>
+<li class="chapter" data-level="6.4.2" data-path="detection-function-fitting.html"><a href="detection-function-fitting.html#size-and-distance"><i class="fa fa-check"></i><b>6.4.2</b> Size and distance</a></li>
+<li class="chapter" data-level="6.4.3" data-path="detection-function-fitting.html"><a href="detection-function-fitting.html#distance-and-sea-state"><i class="fa fa-check"></i><b>6.4.3</b> Distance and sea state</a></li>
+<li class="chapter" data-level="6.4.4" data-path="detection-function-fitting.html"><a href="detection-function-fitting.html#survey-effect"><i class="fa fa-check"></i><b>6.4.4</b> Survey effect</a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="detection-function-fitting.html"><a href="detection-function-fitting.html#fitting-detection-functions"><i class="fa fa-check"></i><b>6.5</b> Fitting detection functions</a><ul>
+<li class="chapter" data-level="6.5.1" data-path="detection-function-fitting.html"><a href="detection-function-fitting.html#summaries"><i class="fa fa-check"></i><b>6.5.1</b> Summaries</a></li>
+<li class="chapter" data-level="6.5.2" data-path="detection-function-fitting.html"><a href="detection-function-fitting.html#goodness-of-fit"><i class="fa fa-check"></i><b>6.5.2</b> Goodness of fit</a></li>
+<li class="chapter" data-level="6.5.3" data-path="detection-function-fitting.html"><a href="detection-function-fitting.html#plotting"><i class="fa fa-check"></i><b>6.5.3</b> Plotting</a></li>
+</ul></li>
+<li class="chapter" data-level="6.6" data-path="detection-function-fitting.html"><a href="detection-function-fitting.html#now-you-try"><i class="fa fa-check"></i><b>6.6</b> Now you try…</a></li>
+<li class="chapter" data-level="6.7" data-path="detection-function-fitting.html"><a href="detection-function-fitting.html#model-selection"><i class="fa fa-check"></i><b>6.7</b> Model selection</a><ul>
+<li class="chapter" data-level="6.7.1" data-path="detection-function-fitting.html"><a href="detection-function-fitting.html#estimating-abundance"><i class="fa fa-check"></i><b>6.7.1</b> Estimating abundance</a></li>
+<li class="chapter" data-level="6.7.2" data-path="detection-function-fitting.html"><a href="detection-function-fitting.html#save-model-objects"><i class="fa fa-check"></i><b>6.7.2</b> Save model objects</a></li>
+</ul></li>
+<li class="chapter" data-level="6.8" data-path="detection-function-fitting.html"><a href="detection-function-fitting.html#references"><i class="fa fa-check"></i><b>6.8</b> References</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="simple-density-surface-models.html"><a href="simple-density-surface-models.html"><i class="fa fa-check"></i><b>7</b> Simple density surface models</a><ul>
+<li class="chapter" data-level="7.1" data-path="simple-density-surface-models.html"><a href="simple-density-surface-models.html#aims-2"><i class="fa fa-check"></i><b>7.1</b> Aims</a></li>
+<li class="chapter" data-level="7.2" data-path="simple-density-surface-models.html"><a href="simple-density-surface-models.html#load-the-packages-and-data"><i class="fa fa-check"></i><b>7.2</b> Load the packages and data</a></li>
+<li class="chapter" data-level="7.3" data-path="simple-density-surface-models.html"><a href="simple-density-surface-models.html#pre-model-fitting"><i class="fa fa-check"></i><b>7.3</b> Pre-model fitting</a></li>
+<li class="chapter" data-level="7.4" data-path="simple-density-surface-models.html"><a href="simple-density-surface-models.html#fitting-dsms"><i class="fa fa-check"></i><b>7.4</b> Fitting DSMs</a><ul>
+<li class="chapter" data-level="7.4.1" data-path="simple-density-surface-models.html"><a href="simple-density-surface-models.html#visualising-output"><i class="fa fa-check"></i><b>7.4.1</b> Visualising output</a></li>
+<li class="chapter" data-level="7.4.2" data-path="simple-density-surface-models.html"><a href="simple-density-surface-models.html#setting-basis-complexity"><i class="fa fa-check"></i><b>7.4.2</b> Setting basis complexity</a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="simple-density-surface-models.html"><a href="simple-density-surface-models.html#estimated-abundance-as-response"><i class="fa fa-check"></i><b>7.5</b> Estimated abundance as response</a></li>
+<li class="chapter" data-level="7.6" data-path="simple-density-surface-models.html"><a href="simple-density-surface-models.html#univariate-models"><i class="fa fa-check"></i><b>7.6</b> Univariate models</a></li>
+<li class="chapter" data-level="7.7" data-path="simple-density-surface-models.html"><a href="simple-density-surface-models.html#tweedie-response-distribution"><i class="fa fa-check"></i><b>7.7</b> Tweedie response distribution</a></li>
+<li class="chapter" data-level="7.8" data-path="simple-density-surface-models.html"><a href="simple-density-surface-models.html#save-models"><i class="fa fa-check"></i><b>7.8</b> Save models</a></li>
+<li class="chapter" data-level="7.9" data-path="simple-density-surface-models.html"><a href="simple-density-surface-models.html#extra-credit"><i class="fa fa-check"></i><b>7.9</b> Extra credit</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="advanced-density-surface-models.html"><a href="advanced-density-surface-models.html"><i class="fa fa-check"></i><b>8</b> Advanced density surface models</a><ul>
+<li class="chapter" data-level="8.1" data-path="advanced-density-surface-models.html"><a href="advanced-density-surface-models.html#aims-3"><i class="fa fa-check"></i><b>8.1</b> Aims</a></li>
+<li class="chapter" data-level="8.2" data-path="advanced-density-surface-models.html"><a href="advanced-density-surface-models.html#load-data-and-packages"><i class="fa fa-check"></i><b>8.2</b> Load data and packages</a></li>
+<li class="chapter" data-level="8.3" data-path="advanced-density-surface-models.html"><a href="advanced-density-surface-models.html#exploratory-analysis-1"><i class="fa fa-check"></i><b>8.3</b> Exploratory analysis</a></li>
+<li class="chapter" data-level="8.4" data-path="advanced-density-surface-models.html"><a href="advanced-density-surface-models.html#pre-model-fitting-1"><i class="fa fa-check"></i><b>8.4</b> Pre-model fitting</a></li>
+<li class="chapter" data-level="8.5" data-path="advanced-density-surface-models.html"><a href="advanced-density-surface-models.html#our-new-friend"><i class="fa fa-check"></i><b>8.5</b> Our new friend <code>+</code></a><ul>
+<li class="chapter" data-level="8.5.1" data-path="advanced-density-surface-models.html"><a href="advanced-density-surface-models.html#plot"><i class="fa fa-check"></i><b>8.5.1</b> Plot</a></li>
+<li class="chapter" data-level="8.5.2" data-path="advanced-density-surface-models.html"><a href="advanced-density-surface-models.html#check"><i class="fa fa-check"></i><b>8.5.2</b> Check</a></li>
+<li class="chapter" data-level="8.5.3" data-path="advanced-density-surface-models.html"><a href="advanced-density-surface-models.html#select-terms"><i class="fa fa-check"></i><b>8.5.3</b> Select terms</a></li>
+<li class="chapter" data-level="8.5.4" data-path="advanced-density-surface-models.html"><a href="advanced-density-surface-models.html#compare-response-distributions"><i class="fa fa-check"></i><b>8.5.4</b> Compare response distributions</a></li>
+</ul></li>
+<li class="chapter" data-level="8.6" data-path="advanced-density-surface-models.html"><a href="advanced-density-surface-models.html#estimated-abundance-as-a-response"><i class="fa fa-check"></i><b>8.6</b> Estimated abundance as a response</a></li>
+<li class="chapter" data-level="8.7" data-path="advanced-density-surface-models.html"><a href="advanced-density-surface-models.html#concurvity"><i class="fa fa-check"></i><b>8.7</b> Concurvity</a></li>
+<li class="chapter" data-level="8.8" data-path="advanced-density-surface-models.html"><a href="advanced-density-surface-models.html#sensitivity"><i class="fa fa-check"></i><b>8.8</b> Sensitivity</a><ul>
+<li class="chapter" data-level="8.8.1" data-path="advanced-density-surface-models.html"><a href="advanced-density-surface-models.html#compare-bivariate-and-additive-spatial-effects"><i class="fa fa-check"></i><b>8.8.1</b> Compare bivariate and additive spatial effects</a></li>
+</ul></li>
+<li class="chapter" data-level="8.9" data-path="advanced-density-surface-models.html"><a href="advanced-density-surface-models.html#comparing-models"><i class="fa fa-check"></i><b>8.9</b> Comparing models</a></li>
+<li class="chapter" data-level="8.10" data-path="advanced-density-surface-models.html"><a href="advanced-density-surface-models.html#saving-models"><i class="fa fa-check"></i><b>8.10</b> Saving models</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="prediction-using-fitted-density-surface-models.html"><a href="prediction-using-fitted-density-surface-models.html"><i class="fa fa-check"></i><b>9</b> Prediction using fitted density surface models</a><ul>
+<li class="chapter" data-level="9.1" data-path="prediction-using-fitted-density-surface-models.html"><a href="prediction-using-fitted-density-surface-models.html#aims-4"><i class="fa fa-check"></i><b>9.1</b> Aims</a></li>
+<li class="chapter" data-level="9.2" data-path="prediction-using-fitted-density-surface-models.html"><a href="prediction-using-fitted-density-surface-models.html#loading-the-packages-and-data"><i class="fa fa-check"></i><b>9.2</b> Loading the packages and data</a></li>
+<li class="chapter" data-level="9.3" data-path="prediction-using-fitted-density-surface-models.html"><a href="prediction-using-fitted-density-surface-models.html#loading-prediction-data"><i class="fa fa-check"></i><b>9.3</b> Loading prediction data</a></li>
+<li class="chapter" data-level="9.4" data-path="prediction-using-fitted-density-surface-models.html"><a href="prediction-using-fitted-density-surface-models.html#save-the-prediction-to-a-raster"><i class="fa fa-check"></i><b>9.4</b> Save the prediction to a raster</a></li>
+<li class="chapter" data-level="9.5" data-path="prediction-using-fitted-density-surface-models.html"><a href="prediction-using-fitted-density-surface-models.html#save-prediction-grid-to-rdata"><i class="fa fa-check"></i><b>9.5</b> Save prediction grid to <code>RData</code></a></li>
+<li class="chapter" data-level="9.6" data-path="prediction-using-fitted-density-surface-models.html"><a href="prediction-using-fitted-density-surface-models.html#extra-credit-1"><i class="fa fa-check"></i><b>9.6</b> Extra credit</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="estimating-precision-of-predictions-from-density-surface-models.html"><a href="estimating-precision-of-predictions-from-density-surface-models.html"><i class="fa fa-check"></i><b>10</b> Estimating precision of predictions from density surface models</a><ul>
+<li class="chapter" data-level="10.1" data-path="estimating-precision-of-predictions-from-density-surface-models.html"><a href="estimating-precision-of-predictions-from-density-surface-models.html#aims-5"><i class="fa fa-check"></i><b>10.1</b> Aims</a></li>
+<li class="chapter" data-level="10.2" data-path="estimating-precision-of-predictions-from-density-surface-models.html"><a href="estimating-precision-of-predictions-from-density-surface-models.html#load-packages-and-data"><i class="fa fa-check"></i><b>10.2</b> Load packages and data</a></li>
+<li class="chapter" data-level="10.3" data-path="estimating-precision-of-predictions-from-density-surface-models.html"><a href="estimating-precision-of-predictions-from-density-surface-models.html#estimation-of-variance"><i class="fa fa-check"></i><b>10.3</b> Estimation of variance</a></li>
+<li class="chapter" data-level="10.4" data-path="estimating-precision-of-predictions-from-density-surface-models.html"><a href="estimating-precision-of-predictions-from-density-surface-models.html#summarise-multiple-models"><i class="fa fa-check"></i><b>10.4</b> Summarise multiple models</a></li>
+<li class="chapter" data-level="10.5" data-path="estimating-precision-of-predictions-from-density-surface-models.html"><a href="estimating-precision-of-predictions-from-density-surface-models.html#plotting-1"><i class="fa fa-check"></i><b>10.5</b> Plotting</a></li>
+<li class="chapter" data-level="10.6" data-path="estimating-precision-of-predictions-from-density-surface-models.html"><a href="estimating-precision-of-predictions-from-density-surface-models.html#save-the-uncertainty-maps-to-raster-files"><i class="fa fa-check"></i><b>10.6</b> Save the uncertainty maps to raster files</a></li>
+<li class="chapter" data-level="10.7" data-path="estimating-precision-of-predictions-from-density-surface-models.html"><a href="estimating-precision-of-predictions-from-density-surface-models.html#extra-credit-2"><i class="fa fa-check"></i><b>10.7</b> Extra credit</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="mark-recapture-distance-sampling-of-golftees.html"><a href="mark-recapture-distance-sampling-of-golftees.html"><i class="fa fa-check"></i><b>11</b> Mark-recapture distance sampling of golftees</a><ul>
+<li class="chapter" data-level="11.1" data-path="mark-recapture-distance-sampling-of-golftees.html"><a href="mark-recapture-distance-sampling-of-golftees.html#golf-tee-survey"><i class="fa fa-check"></i><b>11.1</b> Golf tee survey</a></li>
+<li class="chapter" data-level="11.2" data-path="mark-recapture-distance-sampling-of-golftees.html"><a href="mark-recapture-distance-sampling-of-golftees.html#crabeater-seal-survey"><i class="fa fa-check"></i><b>11.2</b> Crabeater seal survey</a><ul>
+<li class="chapter" data-level="11.2.1" data-path="mark-recapture-distance-sampling-of-golftees.html"><a href="mark-recapture-distance-sampling-of-golftees.html#extra-credit-crabeater-seals-with-mcds"><i class="fa fa-check"></i><b>11.2.1</b> Extra credit – Crabeater seals with MCDS</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references-1.html"><a href="references-1.html"><i class="fa fa-check"></i>References</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Intermediate distance sampling workshop - St Andrews 2017</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="problem-datasets" class="section level1">
+<h1><span class="header-section-number">3</span> Problem datasets</h1>
+<p>You can use this session in one (or both) of two ways.</p>
+<p>Firstly, you can use it to get more practice and guidance on analysis of fairly straightforward distance sampling data in <code>R</code>. In this case, have a look at the Ducknest and Crabeater Seal examples below.</p>
+<p>Secondly, you can challenge yourself with the analysis of some more complex or problematic datasets, focussing on detection function estimation, using either <code>Distance for Windows</code> or <code>R</code>. We do not provide any specific instructions if you’re using <code>R</code>. This this case, have a look at the examples starting with Capercaillie.</p>
+<p>There are many more examples here than you have time to look at in this session - but they will give you something to work on in open sessions later (or perhaps at home) if you don’t have your own data.</p>
+<div id="ducknest" class="section level2">
+<h2><span class="header-section-number">3.1</span> Ducknest</h2>
+<p>The following code performs a simple analysis of the Monte Vista ducknest data in <code>R</code>. You will be very familiar with this dataset if you came on an Introductory course previously.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Read in the data</span>
+<span class="co">#The following command only works if ducknests.csv is in your current directory.  </span>
+<span class="co">#In RStudio you can use the menu item Session | Set working directory to achieve this</span>
+<span class="co">#Or you can use the setwd() function in the R console</span>
+ducknests &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;ducknests.csv&quot;</span>)
+
+<span class="co">#Show the first few lines</span>
+<span class="kw">head</span>(ducknests)</code></pre></div>
+<pre><code>##      Region.Label Area Sample.Label Effort distance
+## 1 Monte_Vista_NWR    0            1 128.75     0.06
+## 2 Monte_Vista_NWR    0            1 128.75     0.07
+## 3 Monte_Vista_NWR    0            1 128.75     0.04
+## 4 Monte_Vista_NWR    0            1 128.75     0.01
+## 5 Monte_Vista_NWR    0            1 128.75     0.37
+## 6 Monte_Vista_NWR    0            1 128.75     0.36</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Fit detection functions - convert.units is necessary because the effort is in km but the distances are in m. </span>
+<span class="kw">library</span>(Distance)
+halfnorm.ducks &lt;-<span class="st"> </span><span class="kw">ds</span>(ducknests, <span class="dt">key=</span><span class="st">&quot;hn&quot;</span>, <span class="dt">adjustment=</span><span class="st">&quot;cos&quot;</span>, <span class="dt">convert.units =</span> <span class="fl">0.001</span>)</code></pre></div>
+<pre><code>## Starting AIC adjustment term selection.</code></pre>
+<pre><code>## Fitting half-normal key function</code></pre>
+<pre><code>## Key only model: not constraining for monotonicity.</code></pre>
+<pre><code>## AIC= 928.134</code></pre>
+<pre><code>## Fitting half-normal key function with cosine(2) adjustments</code></pre>
+<pre><code>## AIC= 929.872</code></pre>
+<pre><code>## 
+## Half-normal key function selected.</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">unifcos.ducks &lt;-<span class="st"> </span><span class="kw">ds</span>(ducknests, <span class="dt">key=</span><span class="st">&quot;unif&quot;</span>, <span class="dt">adjustment=</span><span class="st">&quot;cos&quot;</span>, <span class="dt">mono=</span><span class="st">&quot;strict&quot;</span>, <span class="dt">convert.units =</span> <span class="fl">0.001</span>)</code></pre></div>
+<pre><code>## Starting AIC adjustment term selection.</code></pre>
+<pre><code>## Fitting uniform key function with cosine(1) adjustments</code></pre>
+<pre><code>## AIC= 928.48</code></pre>
+<pre><code>## Fitting uniform key function with cosine(1,2) adjustments</code></pre>
+<pre><code>## AIC= 929.383</code></pre>
+<pre><code>## 
+## Uniform key function with cosine(1) adjustments selected.</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">hazard.ducks &lt;-<span class="st"> </span><span class="kw">ds</span>(ducknests, <span class="dt">key=</span><span class="st">&quot;hr&quot;</span>,  <span class="dt">adjustment=</span><span class="st">&quot;poly&quot;</span>, <span class="dt">convert.units =</span> <span class="fl">0.001</span>)</code></pre></div>
+<pre><code>## Starting AIC adjustment term selection.</code></pre>
+<pre><code>## Fitting hazard-rate key function</code></pre>
+<pre><code>## Key only model: not constraining for monotonicity.</code></pre>
+<pre><code>## AIC= 929.793</code></pre>
+<pre><code>## Fitting hazard-rate key function with simple polynomial(2) adjustments</code></pre>
+<pre><code>## AIC= 931.799</code></pre>
+<pre><code>## 
+## Hazard-rate key function selected.</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Compare the models</span>
+<span class="kw">summarize_ds_models</span>(halfnorm.ducks,unifcos.ducks,hazard.ducks,<span class="dt">output=</span><span class="st">&quot;plain&quot;</span>)</code></pre></div>
+<pre><code>##            Model                                   Key function Formula
+## 1 halfnorm.ducks                                    Half-normal      ~1
+## 2  unifcos.ducks Uniform with cosine adjustment term of order 1    &lt;NA&gt;
+## 3   hazard.ducks                                    Hazard-rate      ~1
+##   C-vM $p$-value Average detectability se(Average detectability) Delta AIC
+## 1      0.9554163             0.8693482                0.03902053 0.0000000
+## 2      0.8208424             0.8464379                0.04407163 0.3458518
+## 3      0.9806443             0.8890698                0.04958136 1.6596033</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Here&#39;s another way to get the AIC values out -- more clunky and less informative</span>
+<span class="kw">cat</span>(<span class="st">&quot;AIC HN=&quot;</span>, <span class="kw">AIC</span>(halfnorm.ducks),  <span class="st">&quot;AIC UNIF=&quot;</span>, <span class="kw">AIC</span>(unifcos.ducks), <span class="st">&quot;AIC HZ=&quot;</span>, <span class="kw">AIC</span>(hazard.ducks))</code></pre></div>
+<pre><code>## AIC HN= 928.1338 AIC UNIF= 928.4797 AIC HZ= 929.7934</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Plot selected function and goodness of fit</span>
+<span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))
+<span class="kw">plot</span>(halfnorm.ducks, <span class="dt">main=</span><span class="st">&quot;Duck nests, half-normal detection function&quot;</span>)
+fit.test &lt;-<span class="st"> </span><span class="kw">ddf.gof</span>(halfnorm.ducks<span class="op">$</span>ddf)</code></pre></div>
+<p><img src="_main_files/figure-html/introdfplot-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(halfnorm.ducks)</code></pre></div>
+<pre><code>## 
+## Summary for distance analysis 
+## Number of observations :  534 
+## Distance range         :  0  -  2.4 
+## 
+## Model : Half-normal key function 
+## AIC   : 928.1338 
+## 
+## Detection function parameters
+## Scale coefficient(s):  
+##              estimate        se
+## (Intercept) 0.9328967 0.1703933
+## 
+##                        Estimate          SE         CV
+## Average p             0.8693482  0.03902053 0.04488481
+## N in covered region 614.2533225 29.19683067 0.04753223
+## 
+## Summary statistics:
+##            Region  Area CoveredArea Effort   n  k        ER       se.ER
+## 1 Monte_Vista_NWR 12.36       12.36   2575 534 20 0.2073786 0.007970756
+##        cv.ER
+## 1 0.03843576
+## 
+## Density:
+##   Label Estimate       se         cv     lcl      ucl       df
+## 1 Total 49.69687 2.936725 0.05909276 44.2033 55.87318 99.55689</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Show how to pull some results out of the fitted object</span>
+halfnorm.ducks<span class="op">$</span>dht<span class="op">$</span>individuals<span class="op">$</span>summary</code></pre></div>
+<pre><code>##            Region  Area CoveredArea Effort   n  k        ER       se.ER
+## 1 Monte_Vista_NWR 12.36       12.36   2575 534 20 0.2073786 0.007970756
+##        cv.ER
+## 1 0.03843576</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">halfnorm.ducks<span class="op">$</span>dht<span class="op">$</span>individuals<span class="op">$</span>D</code></pre></div>
+<pre><code>##   Label Estimate       se         cv     lcl      ucl       df
+## 1 Total 49.69687 2.936725 0.05909276 44.2033 55.87318 99.55689</code></pre>
+</div>
+<div id="crabeater-seal" class="section level2">
+<h2><span class="header-section-number">3.2</span> Crabeater seal</h2>
+<p>This is an aerial survey dataset on crabeater seals in Antarctica that we will encounter later on in the course, when we discuss Mark Recapture Distance Sampling. For the moment, though, the following <code>R</code> code demonstrates an analysis using Multiple Covariate Distance Sampling (MCDS).</p>
+<p>The following code demonstrates import of the data into R, and fitting of a simple half-normal detection function examining the possible improvement of the model by incorporating a <em>side of plane</em> covariate.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Read in data - again, the csv file has to be in your current directory.</span>
+crab.covariate &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;crabbieMCDS.csv&quot;</span>)
+<span class="kw">head</span>(crab.covariate, <span class="dt">n=</span><span class="dv">3</span>)</code></pre></div>
+<pre><code>##     Study.area Region.Label    Area Sample.Label Effort distance size side
+## 1 Nominal_area            1 1000000        99A21  59.72   144.49    1    R
+## 2 Nominal_area            1 1000000        99A21  59.72   125.16    1    L
+## 3 Nominal_area            1 1000000        99A21  59.72   421.40    1    L
+##     exp fatigue gscat vis glare ssmi altitude obsname
+## 1   0.0   61.90     1   G     N   79 43.05763      YH
+## 2 211.7   62.61     1   G     N   79 43.05763      MF
+## 3   0.0   62.86     1   G     N   79 43.05763      MH</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#make sure side (i.e., side of plane) is stored as a factor</span>
+crab.covariate<span class="op">$</span>side&lt;-<span class="kw">as.factor</span>(crab.covariate<span class="op">$</span>side)
+
+<span class="co">#fit detection function with side of plane as a covariate</span>
+<span class="kw">library</span>(Distance)
+ds.side &lt;-<span class="st"> </span><span class="kw">ds</span>(crab.covariate, <span class="dt">key=</span><span class="st">&quot;hn&quot;</span>, <span class="dt">formula=</span><span class="op">~</span>side, <span class="dt">truncation=</span><span class="dv">700</span>)</code></pre></div>
+<pre><code>## Model contains covariate term(s): no adjustment terms will be included.</code></pre>
+<pre><code>## Fitting half-normal key function</code></pre>
+<pre><code>## AIC= 22304.742</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#do some diagnostic plots and a goodness-of-fit test</span>
+<span class="kw">plot</span>(ds.side)</code></pre></div>
+<p><img src="_main_files/figure-html/crabbie-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ds.gof</span>(ds.side, <span class="dt">lwd =</span> <span class="dv">2</span>, <span class="dt">lty =</span> <span class="dv">1</span>, <span class="dt">pch =</span> <span class="st">&quot;.&quot;</span>, <span class="dt">cex =</span> <span class="fl">0.5</span>)</code></pre></div>
+<p><img src="_main_files/figure-html/crabbie-2.png" width="672" /></p>
+<pre><code>## 
+## Goodness of fit results for ddf object
+## 
+## Chi-square tests
+##           [0,16.7] (16.7,33.3] (33.3,50]  (50,66.7] (66.7,83.3] (83.3,100]
+## Observed  87.00000   62.000000 55.000000 64.0000000  74.0000000 62.0000000
+## Expected  71.08365   70.908986 70.560977 70.0422609  69.3567461 68.5095653
+## Chisquare  3.56383    1.119323  3.431699  0.5212413   0.3108538  0.6185186
+##            (100,117] (117,133]   (133,150]  (150,167]  (167,183]
+## Observed  66.0000000 54.000000 63.00000000 60.0000000 66.0000000
+## Expected  67.5070094 66.356447 65.06623387 63.6456055 62.1045680
+## Chisquare  0.0336421  2.300934  0.06561502  0.2088194  0.2443361
+##            (183,200] (200,217]   (217,233]   (233,250]   (250,267]
+## Observed  66.0000000 51.000000 58.00000000 57.00000000 52.00000000
+## Expected  60.4537763 58.704409 56.86804158 54.95651436 52.98180713
+## Chisquare  0.5088284  1.011132  0.02253163  0.07598432  0.01819389
+##           (267,283]    (283,300]  (300,317] (317,333] (333,350]
+## Observed  41.000000 4.900000e+01 43.0000000 56.000000 50.000000
+## Expected  50.955913 4.889072e+01 46.7978830 44.688750 42.574232
+## Chisquare  1.945215 2.442777e-04  0.3082173  2.863011  1.295197
+##              (350,367] (367,383] (383,400]  (400,417]  (417,433] (433,450]
+## Observed  40.000000000 55.000000 47.000000 38.0000000 36.0000000  23.00000
+## Expected  40.464730827 38.370066 36.299403 34.2612089 32.2632053  30.31234
+## Chisquare  0.005337358  7.207564  3.154398  0.4079996  0.4328037   1.76398
+##           (450,467]   (467,483] (483,500]  (500,517]   (517,533]
+## Observed  41.000000 25.00000000 35.000000 25.0000000 22.00000000
+## Expected  28.414787 26.57590205 24.800267 23.0916811 21.45318747
+## Chisquare  5.574126  0.09344809  4.194896  0.1577053  0.01393751
+##            (533,550] (550,567]    (567,583] (583,600]  (600,617]
+## Observed  23.0000000 11.000000 1.700000e+01 13.000000 13.0000000
+## Expected  19.8871031 18.395054 1.697802e+01 15.636363 14.3699089
+## Chisquare  0.4872568  2.972909 2.846396e-05  0.444503  0.1305959
+##            (617,633]  (633,650] (650,667]  (667,683] (683,700]     Total
+## Observed  11.0000000  9.0000000   6.00000  9.0000000  5.000000 1740.0000
+## Expected  13.1779664 12.0593944  11.01265 10.0358528  9.126811 1740.0000
+## Chisquare  0.3599597  0.7761496   2.28162  0.1069158  1.865993   52.8995
+## 
+## P = 0.067893 with 39 degrees of freedom
+## 
+## Distance sampling Kolmogorov-Smirnov test
+## Test statistic =  0.026577  P =  0.1711 
+## 
+## Distance sampling Cramer-von Mises test (unweighted)
+## Test statistic =  0.33454  P =  0.10836</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#compare with a model that does not have side of plane as a covar</span>
+ds.noside &lt;-<span class="st"> </span><span class="kw">ds</span>(crab.covariate, <span class="dt">key=</span><span class="st">&quot;hn&quot;</span>, <span class="dt">truncation=</span><span class="dv">700</span>)</code></pre></div>
+<pre><code>## Starting AIC adjustment term selection.</code></pre>
+<pre><code>## Fitting half-normal key function</code></pre>
+<pre><code>## Key only model: not constraining for monotonicity.</code></pre>
+<pre><code>## AIC= 22314.398</code></pre>
+<pre><code>## Fitting half-normal key function with cosine(2) adjustments</code></pre>
+<pre><code>## AIC= 22308.645</code></pre>
+<pre><code>## Fitting half-normal key function with cosine(2,3) adjustments</code></pre>
+<pre><code>## AIC= 22304.015</code></pre>
+<pre><code>## Fitting half-normal key function with cosine(2,3,4) adjustments</code></pre>
+<pre><code>## AIC= 22305.943</code></pre>
+<pre><code>## 
+## Half-normal key function with cosine(2,3) adjustments selected.</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summarize_ds_models</span>(ds.side,ds.noside,<span class="dt">output=</span><span class="st">&quot;plain&quot;</span>)</code></pre></div>
+<pre><code>##       Model                                          Key function Formula
+## 2 ds.noside Half-normal with cosine adjustment terms of order 2,3      ~1
+## 1   ds.side                                           Half-normal   ~side
+##   C-vM $p$-value Average detectability se(Average detectability) Delta AIC
+## 2      0.9759692             0.5982664                0.02720373 0.0000000
+## 1      0.1083600             0.5825754                0.01245102 0.7277174</code></pre>
+<p>What is your conclusion so far? Are there other diagnostics you might want to run, or other models you might want to fit?</p>
+</div>
+<div id="capercaillie" class="section level2">
+<h2><span class="header-section-number">3.3</span> Capercaillie</h2>
+<p>This is a fairly straightforward dataset from a line transect survey of capercaillie (a large grouse) in Scotland. Feel free to skip over this example if you are quite confident in the analysis of conventional line transect data.</p>
+<p>There is one minor issue in the distances, which does not affect the results much. If you decide to analyze these data, see if you can tell what is is.</p>
+<p>The data are given in the form of a tab-delimited text file. The size of the study area is not known, so it is given as 0 so we can estimate capercaillie density but not abundance. Also, we do not have individual line data; we just know that the total line length was 240km. So, we’ll be able to estimate density, but not get an accurate estimate of variance, because we won’t be able to calculate between-line variance in encounter rate.</p>
+<ul>
+<li><a href="capercaillie.txt">Data as tab-delimited text file</a></li>
+</ul>
+</div>
+<div id="amakihi" class="section level2">
+<h2><span class="header-section-number">3.4</span> Amakihi</h2>
+<p>The Amakihi is a Hawaiian forest bird. The dataset you have here is from a point transct survey, which had 7 geographic strata. Try analyzing the data and select a detection function to use for inference. In addition to a conventional distance sampling analysis, try the available covariates to see if you can obtain more relaible stratum-level estimates of density. Potential covariates are month, observer (OBS), minutes after sunrise (MAS) and hours after sunrise (HAS).</p>
+<p>These data were used as the motivating example in a paper describing Multiple Covariate Distance Sampling (Marques et al. 2007), and also in Section 5.3.2.1 of the new Distance Sampling book (Buckland et al. 2015); you have the paper on your data stick and a hard copy of the book, so once you’ve finished your analysis, you can compare what you found with their analysis. (An analysis file is also available on the book web site <a href="https://synergy.st-andrews.ac.uk/ds-manda/" class="uri">https://synergy.st-andrews.ac.uk/ds-manda/</a>)</p>
+<ul>
+<li><a href="Difficult%20data/Amakihi2.zip">Distance 7 project</a></li>
+<li><a href="Difficult%20data\Amakihi.csv">Data as csv for R analysis</a></li>
+</ul>
+</div>
+<div id="odd-spike-data-set" class="section level2">
+<h2><span class="header-section-number">3.5</span> Odd spike data set</h2>
+<p>These data are not real! - they are synthetic. Try fitting detection functions without the monotonicity constraint, and use model selection to decide which model is the most parsimonious.</p>
+<ul>
+<li><a href="Difficult%20data/D7OddSpike%20-%20Demo%202.zip">Distance 7 project</a></li>
+<li><a href="Difficult%20data\Oddspike.r">R script to manufacture and conduct analysis</a></li>
+</ul>
+</div>
+<div id="blue-monkey-data-set" class="section level2">
+<h2><span class="header-section-number">3.6</span> Blue monkey data set</h2>
+<p>These data are real, unfortunately. They are on groups of monkeys from a line transect survey in tropical forest. What is the major issue with these data? What questions would you like to ask the data gatherers in order to decide how the data might be salvaged? In the absence of such information, what are your thoughts about the best way to analyze the data to infer detectability?</p>
+<ul>
+<li><a href="Difficult%20data/D7BlueMonkey%20-%20Demo%203.zip">Distance 7 project</a></li>
+<li><a href="Difficult%20data\BlueMonkey.csv">Data as csv for R analysis</a></li>
+</ul>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="create-and-analyse-a-simulated-dataset.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="creating-distance-sampling-simulations-using-dssim.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(script.src))
+      script.src  = script.src.replace(/^https?:/, '');
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
