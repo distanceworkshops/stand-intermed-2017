@@ -13,7 +13,6 @@ This is the site for the Intermediate-level Distance Sampling Workshop given in 
 - [Slides](slides.html) in PDF, HTML and R formats
 - [Practical session exercises and data](practicals.html)
 - [Bibliography](bibliography.html) listing additional useful publications
-- [Course evaluation](https://docs.google.com/forms/d/e/1FAIpQLSfRwTobQ29PSrSbiVVBw6vxbRIG_qTgrWZKEyxyFjvhXV0ICA/viewform?c=0&w=1&includes_info_params=true) please fill this in at the end of the course with your feedback
 
 ## Course description
 
