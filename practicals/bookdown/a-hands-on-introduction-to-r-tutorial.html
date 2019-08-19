@@ -590,13 +590,13 @@ mydata<span class="op">$</span>total &lt;-<span class="st"> </span>mydata<span c
 <p>One of the most amazing R capabilities are its graphics customization properties. One can create pretty much any graphic output desirable. The plot function is, as we have seen before for function <code>summary()</code>, a function that attempts to do something smart depending on the type of arguments used. Using the data set iris previously considered, plot examples are implemented below, with some optional arguments being used to show some of the possibilities to customize plots.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#default use</span>
 <span class="kw">plot</span>(indat<span class="op">$</span>Sepal.Length)</code></pre></div>
-<p><img src="_main_files/figure-html/simpleplot-1.png" width="672" /></p>
+<p><img src="figure-html/simpleplot-1.png" width="672" /></p>
 <p>We now add some labels to a new plot of sepal length as a function of species (note the use of <code>~</code> to mean <em>as a function of</em>; this is also used below when specifying regression models, where the object on the left of <code>~</code> will be the response variable and the objects on the right explanatory variables)</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ys &lt;-<span class="st"> </span>indat<span class="op">$</span>Sepal.Length
 xs &lt;-<span class="st"> </span>indat<span class="op">$</span>Species
 <span class="co">#note use of ~ to represent &quot;as a function of&quot;</span>
 <span class="kw">plot</span>(ys<span class="op">~</span>xs, <span class="dt">ylab=</span><span class="st">&quot;Sepal Length (in mm)&quot;</span>, <span class="dt">main=</span><span class="st">&quot;Sepal length by species&quot;</span>)</code></pre></div>
-<p><img src="_main_files/figure-html/flowerplot-1.png" width="672" /></p>
+<p><img src="figure-html/flowerplot-1.png" width="672" /></p>
 <p>We can also set the graphic window to hold multiple plots. This is obtained via argument <code>mfrow</code>, one of the arguments in function <code>par</code>.<a href="#fn5" class="footnoteRef" id="fnref5"><sup>5</sup></a> An example follows, in which we leverage on the use of function <code>with</code> to avoid having to constantly use <code>indat$</code> to tell R where the data can be found.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#define two rows and 2 columns of plots</span>
 <span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">3</span>,<span class="dv">2</span>))
@@ -606,13 +606,13 @@ xs &lt;-<span class="st"> </span>indat<span class="op">$</span>Species
 <span class="kw">with</span>(indat, <span class="kw">hist</span>(Petal.Width, <span class="dt">main=</span><span class="st">&quot;&quot;</span>))
 <span class="kw">with</span>(indat, <span class="kw">plot</span>(Petal.Length, Petal.Width, <span class="dt">pch=</span><span class="dv">21</span>, <span class="dt">col=</span><span class="dv">12</span>, <span class="dt">bg=</span><span class="dv">3</span>))
 <span class="kw">with</span>(indat, <span class="kw">plot</span>(Sepal.Length, Sepal.Width, <span class="dt">pch=</span><span class="dv">16</span>, <span class="dt">col=</span><span class="dv">3</span>))</code></pre></div>
-<p><img src="_main_files/figure-html/plot2col-1.png" width="672" /></p>
+<p><img src="figure-html/plot2col-1.png" width="672" /></p>
 <p>We used argument <code>mfrow</code>, but looking at the help for function `par gives you an insight to the level of customization one can reach with respect to these graphical parameters, via dozens of different arguments.</p>
 <p>We can look at the correlation structure between all variables using function <code>pairs()</code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># define two rows and 2 columns of plots</span>
 <span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))
 <span class="kw">pairs</span>(indat)</code></pre></div>
-<p><img src="_main_files/figure-html/pairs-1.png" width="672" /></p>
+<p><img src="figure-html/pairs-1.png" width="672" /></p>
 <p><strong>Task 3</strong>: Using data <code>cars</code>, create a plot that represents the stopping distances as a function of the speed of cars. Use the <code>points</code> function to add a special symbol to points corresponding to cars with speed lower than 15 mph, but distance larger than 70m. Check out the function <code>text</code> to add text annotations to plots. Customize axis labels.</p>
 </div>
 <div id="extending-basic-capabilities-via-packages" class="section level2">
@@ -674,7 +674,7 @@ yl &lt;-<span class="st"> &quot;Distance (m)&quot;</span>
 <span class="kw">plot</span>(cars<span class="op">$</span>speed, cars<span class="op">$</span>dist, <span class="dt">xlab=</span>xl, <span class="dt">ylab=</span>yl, <span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">120</span>) ,<span class="dt">xlim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">30</span>))
 <span class="kw">abline</span>(mylm1)</code></pre></div>
 <div class="figure"><span id="fig:plotreg"></span>
-<img src="_main_files/figure-html/plotreg-1.png" alt="The data and the linear fit added to it." width="672" />
+<img src="figure-html/plotreg-1.png" alt="The data and the linear fit added to it." width="672" />
 <p class="caption">
 Figure 1.1: The data and the linear fit added to it.
 </p>
@@ -696,7 +696,7 @@ predmyglm1 &lt;-<span class="st"> </span><span class="kw">predict.glm</span>(myg
 <span class="co">#and now add the glm predictions</span>
 <span class="kw">lines</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">30</span>, predmyglm1, <span class="dt">col=</span><span class="st">&quot;blue&quot;</span>, <span class="dt">lwd=</span><span class="dv">3</span>, <span class="dt">lty=</span><span class="dv">3</span>)</code></pre></div>
 <div class="figure"><span id="fig:plotgam"></span>
-<img src="_main_files/figure-html/plotgam-1.png" alt="The data and the linear and Gamma glm fits added to it." width="672" />
+<img src="figure-html/plotgam-1.png" alt="The data and the linear and Gamma glm fits added to it." width="672" />
 <p class="caption">
 Figure 1.2: The data and the linear and Gamma glm fits added to it.
 </p>
@@ -720,7 +720,7 @@ predmygam1 &lt;-<span class="st"> </span><span class="kw">predict</span>(mygam1,
 <span class="kw">lines</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">30</span>, predmyglm1, <span class="dt">col=</span><span class="st">&quot;blue&quot;</span>, <span class="dt">lwd=</span><span class="dv">3</span>, <span class="dt">lty=</span><span class="dv">3</span>)
 <span class="kw">lines</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">30</span>, predmygam1, <span class="dt">col=</span><span class="st">&quot;green&quot;</span>, <span class="dt">lwd=</span><span class="dv">3</span>, <span class="dt">lty=</span><span class="dv">2</span>)</code></pre></div>
 <div class="figure"><span id="fig:gamfitplot"></span>
-<img src="_main_files/figure-html/gamfitplot-1.png" alt="The data and the linear and Gamma glm and gam fits added to it." width="672" />
+<img src="figure-html/gamfitplot-1.png" alt="The data and the linear and Gamma glm and gam fits added to it." width="672" />
 <p class="caption">
 Figure 1.3: The data and the linear and Gamma glm and gam fits added to it.
 </p>

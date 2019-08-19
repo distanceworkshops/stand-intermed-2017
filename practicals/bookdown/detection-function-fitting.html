@@ -341,7 +341,7 @@ distdata<span class="op">$</span>size &lt;-<span class="st"> </span>distdata<spa
 <p>Obviously, the most important covariate in a distance sampling analysis is distance itself. We can plot a histogram of the distances to check that (1) we imported the data correctly and (2) it conforms to the usual shape for line transect data.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">hist</span>(distdata<span class="op">$</span>distance, <span class="dt">xlab=</span><span class="st">&quot;Distance (m)&quot;</span>, <span class="dt">main=</span><span class="st">&quot;Distance to sperm whale observations&quot;</span>)</code></pre></div>
 <div class="figure"><span id="fig:eda-dist"></span>
-<img src="_main_files/figure-html/eda-dist-1.png" alt="Distribution of observed perpendicular detection distances." width="672" />
+<img src="figure-html/eda-dist-1.png" alt="Distribution of observed perpendicular detection distances." width="672" />
 <p class="caption">
 Figure 6.1: Distribution of observed perpendicular detection distances.
 </p>
@@ -368,7 +368,7 @@ p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(distplot, <span c
 <span class="st">      </span><span class="kw">labs</span>(<span class="dt">x=</span><span class="st">&quot;Covariate value&quot;</span>, <span class="dt">y=</span><span class="st">&quot;Distance (m)&quot;</span>)
 <span class="kw">print</span>(p)</code></pre></div>
 <div class="figure"><span id="fig:eda-covars"></span>
-<img src="_main_files/figure-html/eda-covars-1.png" alt="Effect of group size upon detection distances." width="1152" />
+<img src="figure-html/eda-covars-1.png" alt="Effect of group size upon detection distances." width="1152" />
 <p class="caption">
 Figure 6.2: Effect of group size upon detection distances.
 </p>
@@ -385,7 +385,7 @@ p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(distdata) <span c
 <span class="kw">print</span>(p)</code></pre></div>
 <pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
 <div class="figure"><span id="fig:eda-dist-facet-seastate"></span>
-<img src="_main_files/figure-html/eda-dist-facet-seastate-1.png" alt="Effect of sea state upon detection distances." width="672" />
+<img src="figure-html/eda-dist-facet-seastate-1.png" alt="Effect of sea state upon detection distances." width="672" />
 <p class="caption">
 Figure 6.3: Effect of sea state upon detection distances.
 </p>
@@ -401,7 +401,7 @@ Figure 6.3: Effect of sea state upon detection distances.
 <span class="kw">print</span>(p)</code></pre></div>
 <pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
 <div class="figure"><span id="fig:eda-dist-facet-survey"></span>
-<img src="_main_files/figure-html/eda-dist-facet-survey-1.png" alt="Effect of survey upon detection distances." width="672" />
+<img src="figure-html/eda-dist-facet-survey-1.png" alt="Effect of survey upon detection distances." width="672" />
 <p class="caption">
 Figure 6.4: Effect of survey upon detection distances.
 </p>
@@ -478,7 +478,7 @@ Press <code>Run</code> and examine contents of output window. The results should
 <p>Goodness of fit quantile-quantile plot and test results can be accessed using the <code>ddf.gof()</code> function:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ddf.gof</span>(df_hn<span class="op">$</span>ddf)</code></pre></div>
 <div class="figure"><span id="fig:simple-gof"></span>
-<img src="_main_files/figure-html/simple-gof-1.png" alt="Goodness of fit QQ plot of half-normal detection function." width="384" />
+<img src="figure-html/simple-gof-1.png" alt="Goodness of fit QQ plot of half-normal detection function." width="384" />
 <p class="caption">
 Figure 6.5: Goodness of fit QQ plot of half-normal detection function.
 </p>
@@ -518,7 +518,7 @@ Figure 6.5: Goodness of fit QQ plot of half-normal detection function.
 <p>We can plot the models simply using the <code>plot()</code> function:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(df_hn)</code></pre></div>
 <div class="figure"><span id="fig:simple-plot"></span>
-<img src="_main_files/figure-html/simple-plot-1.png" alt="Half-normal detection function." width="672" />
+<img src="figure-html/simple-plot-1.png" alt="Half-normal detection function." width="672" />
 <p class="caption">
 Figure 6.6: Half-normal detection function.
 </p>

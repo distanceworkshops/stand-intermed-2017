@@ -360,7 +360,7 @@ sim &lt;-<span class="st"> </span><span class="kw">make.simulation</span>(<span 
 <span class="co">#Run a single survey and plot it</span>
 survey.res &lt;-<span class="st"> </span><span class="kw">create.survey.results</span>(sim,<span class="dt">dht.tables=</span><span class="ot">TRUE</span>)
 <span class="kw">plot</span>(survey.res)</code></pre></div>
-<p><img src="_main_files/figure-html/sim-1.png" width="672" /></p>
+<p><img src="figure-html/sim-1.png" width="672" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Extract the data needed for distance sampling analysis</span>
 distance.data &lt;-<span class="st"> </span><span class="kw">get.distance.data</span>(survey.res)
 region.table &lt;-<span class="st"> </span>survey.res<span class="op">@</span>region.table<span class="op">@</span>region.table
@@ -406,9 +406,9 @@ hncos.simdata &lt;-<span class="st"> </span><span class="kw">ds</span>(distance.
 <pre><code>## No survey area information supplied, only estimating detection function.</code></pre>
 <p>Compare the models, for example using AIC. One can also plot the fitted functions, and look at goodness of fit – you should certainly do that for the detection function you select. As an illustration, here’s model checking code for the hazard rate function:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(hrpoly.simdata)</code></pre></div>
-<p><img src="_main_files/figure-html/detfunc.gof-1.png" width="672" /></p>
+<p><img src="figure-html/detfunc.gof-1.png" width="672" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ds.gof</span>(hrpoly.simdata)</code></pre></div>
-<p><img src="_main_files/figure-html/detfunc.gof-2.png" width="672" /></p>
+<p><img src="figure-html/detfunc.gof-2.png" width="672" /></p>
 <pre><code>## 
 ## Goodness of fit results for ddf object
 ## 
